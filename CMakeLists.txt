@@ -142,6 +142,7 @@ set(TARGET_NAME ImGuiExt)
 
 # add library target
 add_library(${TARGET_NAME} STATIC imgui_compiler.cpp)
+add_library(${TARGET_NAME}::${TARGET_NAME} ALIAS ${TARGET_NAME})
 
 # link libraries
 target_link_libraries(${TARGET_NAME} PUBLIC imgui)
