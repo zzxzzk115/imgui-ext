@@ -7,10 +7,9 @@ project(ImGuiExt
         LANGUAGES CXX)
 
 # set options
-option(IMGUIEXT_BUILD_EXAMPLES "Build examples" ON)
-option(IMGUIEXT_WITH_BACKEND_SDL2 "Enable ImGui SDL2 backend" ON)
+option(IMGUIEXT_WITH_BACKEND_SDL2 "Enable ImGui SDL2 backend" OFF)
 option(IMGUIEXT_WITH_BACKEND_GLFW "Enable ImGui GLFW backend" OFF)
-option(IMGUIEXT_WITH_BACKEND_GL3 "Enable ImGui OpenGL3 backend" ON)
+option(IMGUIEXT_WITH_BACKEND_GL3 "Enable ImGui OpenGL3 backend" OFF)
 option(IMGUIEXT_WITH_BACKEND_GL2 "Enable ImGui OpenGL2 backend" OFF)
 option(IMGUIEXT_WITH_BACKEND_VULKAN "Enable ImGui Vulkan backend" OFF)
 option(IMGUIEXT_WITH_BACKEND_DX11 "Enable ImGui DirectX11 backend" OFF)
@@ -53,7 +52,7 @@ endif ()
 # GLFW backend
 if (IMGUIEXT_WITH_BACKEND_GLFW)
     CPMAddPackage(
-            URI "gh:glfw/glfw@3.4.2"
+            URI "gh:glfw/glfw#3.4"
             OPTIONS "GLFW_BUILD_EXAMPLES OFF" "GLFW_BUILD_TESTS OFF" "GLFW_BUILD_DOCS OFF"
     )
     list(APPEND IMGUI_BACKEND_SRCS ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp)
@@ -147,8 +146,3 @@ add_library(${TARGET_NAME} STATIC imgui_compiler.cpp)
 # link libraries
 target_link_libraries(${TARGET_NAME} PUBLIC imgui)
 target_set_common_properties(${TARGET_NAME})
-
-# add examples
-if (IMGUIEXT_BUILD_EXAMPLES)
-    add_subdirectory(examples)
-endif ()

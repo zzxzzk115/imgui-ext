@@ -1,1 +1,0 @@
-add_subdirectory(default_sdl2_opengl3)
